@@ -1,3 +1,4 @@
+import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
 import { BUY_CAKE } from "./cakeTypes";
 
 const initalState = {
@@ -9,7 +10,7 @@ const reducerCake = (state = initalState, action) => {
     case BUY_CAKE:
       return {
         ...state,
-        numOfCakes: state.numOfCakes - 1,
+        numOfCakes: state.numOfCakes - action.payload,
       };
 
     default:
