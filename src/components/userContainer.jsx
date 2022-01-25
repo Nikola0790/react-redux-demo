@@ -9,7 +9,7 @@ import {
 
 function UserContainer() {
   const dispacth = useDispatch();
-  const users = useSelector((state) => state.user.users);
+  const users = useSelector((state) => state.user);
 
   const fetchUsers = () => {
     return (dispacth) => {
@@ -30,9 +30,13 @@ function UserContainer() {
     dispacth(fetchUsers());
   }, []);
 
-  return (
+  return users.loading ? (
+    <div>LOADING</div>
+  ) : users.error ? (
+    <div>users.error</div>
+  ) : (
     <div>
-      {users.map((item) => {
+      {users.users.map((item) => {
         return <p>{item.name}</p>;
       })}
     </div>
